@@ -1,6 +1,6 @@
-import Banner from "../components/Banner";
-import LatestProducts from "../components/LatestProducts";
-import WhyChooseUs from "../components/WhyChooseUs";
+import Banner from "./Banner";
+import LatestProducts from "./LatestProducts";
+import WhyChooseUs from "./WhyChooseUs";
 
 const Home = () => {
   return (

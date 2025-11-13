@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout.jsx";
-import ErrorPage from "../Pages/ErrorPage";
-import Home from "../Components/Home.jsx";
+import ErrorPage from "../Component/ErrorPage.jsx";
+import Home from "../Component/Home.jsx";
 import AllProducts from "../Pages/AllProducts";
 import ProductDetails from "../Pages/ProductDetails";
 import Login from "../Pages/Auth/Login.jsx";
