@@ -5,7 +5,7 @@ import { LiaGlobeSolid } from "react-icons/lia";
 import { BsBoxes } from "react-icons/bs";
 
 const ProductCard = ({ product }) => {
-  const { _id, name, image, price, rating, origin, quantity } = product;
+  const { _id, name, image, price, rating, originCountry, availableQuantity } = product;
 
 return(
   <div className="border bg-[#f7f7f7] rounded-lg p-3 shadow hover:shadow-lg transition flex flex-col">
@@ -22,18 +22,20 @@ return(
       <span className="flex items-center gap-1">
         <FaStar className="text-yellow-400" /> {rating}
       </span>
-      <span className="ml-3 flex items-center gap-1 text-[#7AA93C]">
-        <FaCoins /> {price.toFixed(2)}TK
+      <span className="flex items-center gap-1 ">
+        <FaCoins className="text-[#7AA93C]" /> {price.toFixed(2)}TK
       </span>
-    </p>
-    <p className="mt-1 text-sm text-gray-500">🌍<LiaGlobeSolid /> {origin}</p>
-    <p className="mt-1 text-sm text-gray-500">📦<BsBoxes/> {quantity} Available</p>
+    
+    <span className="flex items-center gap-1 "><LiaGlobeSolid className="text-green-400"/> {originCountry}</span>
+    <span className="flex items-center gap-1 "><BsBoxes className="text-yellow-400"/> {
+availableQuantity} Available</span>
+</p>
   </div>
 
   <div className="mt-4">
     <Link
       to={`/product/${_id}`}
-      className="btn btn-sm btn-outline w-full bg-[#7AA93C]"
+      className="btn btn-outline btn-primary w-full flex justify-center items-center gap-2 mt-2 mx-auto"
     >
       See Details
     </Link>

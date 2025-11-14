@@ -3,9 +3,10 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-hot-toast";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import { auth } from "../../Firebase/firebase.config";
 
 const Login = () => {
-  const { signInUser, googleLogin } = useContext(AuthContext);
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -15,12 +16,41 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // Function to save user info to backend
+  const saveUserToBackend = async (userData) => {
+    try {
+      const token = await auth.currentUser.getIdToken();
+      localStorage.setItem("access-token", token);
+
+      await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(userData),
+      });
+    } catch (err) {
+      console.error("Failed to save user to backend:", err);
+    }
+  };
+
+  // Email/password login
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await signInUser(email, password);
+      const result = await signInUser(email, password);
+      const user = result.user;
+
+      await saveUserToBackend({
+        name: user.displayName || "",
+        email: user.email,
+        photoURL: user.photoURL || "",
+        role: "importer",
+      });
+
       toast.success("Login successful!");
       navigate(from, { replace: true });
     } catch (err) {
@@ -30,13 +60,27 @@ const Login = () => {
     }
   };
 
+  // Google login
   const handleGoogleLogin = async () => {
+    setLoading(true);
+
     try {
-      await googleLogin();
+      const result = await signInWithGoogle();
+      const user = result.user;
+
+      await saveUserToBackend({
+        name: user.displayName || "",
+        email: user.email,
+        photoURL: user.photoURL || "",
+        role: "importer",
+      });
+
       toast.success("Login successful!");
       navigate(from, { replace: true });
     } catch (err) {
       toast.error(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -85,6 +129,7 @@ const Login = () => {
       <button
         onClick={handleGoogleLogin}
         className="btn btn-outline btn-primary w-full flex justify-center items-center gap-2"
+        disabled={loading}
       >
         <FaGoogle /> Login with Google
       </button>

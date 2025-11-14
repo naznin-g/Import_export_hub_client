@@ -1,22 +1,22 @@
-import React, { use } from 'react';
-import { AuthContext } from '../Context/AuthContext';
-import { Navigate, useLocation } from 'react-router';
+import { Navigate, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
+import Loader from "../Component/Loader.jsx";
 
 const PrivateRoute = ({ children }) => {
-    const { user, loading } = use(AuthContext);
+  const { user, loading } = useContext(AuthContext);
+  const location = useLocation();
 
-    const location = useLocation();
-    console.log(location)
+  if (loading) {
+    return <p>Loader</p>; // optional spinner
+  }
 
-    if (loading) {
-        return <span className="loading loading-spinner text-success"></span>
-    }
+  if (!user) {
+    
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
 
-    if (user) {
-        return children;
-    }
-
-    return <Navigate state={location?.pathname} to="/login"></Navigate>;
+  return children;
 };
 
 export default PrivateRoute;
