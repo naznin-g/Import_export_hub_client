@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import ProductCard from "../Component/ProductCard"; 
+import useAxios from "../hooks/useAxios.jsx";
+import ProductCard from "./ProductCard.jsx"; 
 
 const LatestProducts = () => {
+  const axios = useAxios();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Fetch 6 latest products from backend
-    axios
-      .get("http://localhost:3000/products?limit=6&sort=-createdAt")
-      .then((res) => setProducts(res.data))
-      .catch((err) => console.error(err));
-  }, []);
+  axios.get("/latest-products")
+    .then(res => {
+      console.log(res.data); // <-- check what server sends
+      setProducts(res.data)
+    })
+    .catch(err => console.error(err));
+}, [axios]);
 
   return (
     <section className="container mx-auto py-10">

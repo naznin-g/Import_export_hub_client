@@ -22,9 +22,9 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/all-products",
+        path: "/products",
         element: <AllProducts />,
-        // loader: () => fetch("http://localhost:3000/products"), // optional
+        loader: () => fetch("http://localhost:3000/products"), 
       },
       {
         path: "/product/:id",
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
             <ProductDetails />
           </PrivateRoute>
         ),
-        // loader: ({ params }) => fetch(`http://localhost:3000/products/${params.id}`),
+        loader: ({ params }) => fetch(`http://localhost:3000/products/${params.id}`),
       },
       {
         path: "/add-export",

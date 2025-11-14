@@ -11,7 +11,7 @@
 
 /* Custom button override */
 .btn-primary {
-  @apply bg-gradient-to-r from-[#632EE3] to-[#9F62F2] border-none text-white;
+  @apply bg-linear-to-r from-[#1767A8] to-[#057151] border-none text-white;
 }
 .btn-primary:hover {
   @apply opacity-90;

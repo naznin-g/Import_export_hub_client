@@ -5,19 +5,19 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const heroSlides = [
   {
-    image:"https://images.unsplash.com/photo-1583209814683-c023dd293cc6?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:"https://i.postimg.cc/QMSvgmBk/makeup.jpg",
     text: "Glow Beyond Borders",
   },
   {
-    image: "https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4?q=80&w=798&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://i.postimg.cc/MGtg05cT/automobile.jpg",
     text: "Power That Moves the World",
   },
   {
-    image:"https://plus.unsplash.com/premium_photo-1679079456083-9f288e224e96?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:"https://i.postimg.cc/W4Sxm8Dg/electronics.jpg",
     text: "Smart Tech, Global Reach",
   },
   {
-    image:"https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=874&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image:"https://i.postimg.cc/d0ngR67y/home-appliances.jpg",
     text: "Global Comfort, Local Care",
   },
 ];

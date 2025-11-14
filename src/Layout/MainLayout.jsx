@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 
 import Navbar from "../Component/Navbar.jsx";
-import Footer from "../Component/Footer.js";
+import Footer from "../Component/Footer.jsx";
 import { Toaster } from 'react-hot-toast';
 
 const MainLayout = () => {
