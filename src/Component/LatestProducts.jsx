@@ -7,7 +7,7 @@ const LatestProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-  axios.get("/latest-products")
+  axios.get("http://localhost:3000/latest-products")
     .then(res => {
       console.log(res.data); // <-- check what server sends
       setProducts(res.data)

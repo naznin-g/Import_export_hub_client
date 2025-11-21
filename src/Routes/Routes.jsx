@@ -10,7 +10,7 @@ import Register from "../Pages/Auth/Register.jsx";
 import AddExport from "../Pages/AddExport.jsx";
 import MyExports from "../Pages/MyExports.jsx";
 import MyImports from "../Pages/MyImports.jsx";
-import PrivateRoute from "../Routes/PrivateRoute.jsx";
+import PrivateRoute from "./PrivateRoute.jsx";
 
 const API_BASE = "http://localhost:3000"; // backend URL
 
@@ -35,16 +35,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/product/:id",
+        loader: ({params}) => fetch(`http://localhost:3000/product/${params.id}`),
         element: (
           <PrivateRoute>
             <ProductDetails />
           </PrivateRoute>
         ),
-        loader: async ({ params }) => {
-          const res = await fetch(`${API_BASE}/products/${params.id}`);
-          if (!res.ok) throw new Error("Product not found");
-          return res.json();
-        },
+
       },
       {
         path: "/add-export",
@@ -67,6 +64,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyImports />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-imports",
+        element: (
+          <PrivateRoute>
+            <MyExports />
           </PrivateRoute>
         ),
       },

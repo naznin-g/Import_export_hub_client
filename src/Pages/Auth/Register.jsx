@@ -3,10 +3,9 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-hot-toast";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
-import { auth } from "../../Firebase/firebase.config";
 
 const Register = () => {
-  const { createUser, googleLogin, updateUserProfile } = useContext(AuthContext);
+  const { createUser, signInWithGoogle } = useContext(AuthContext); // ✅ Correct
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -29,20 +28,11 @@ const Register = () => {
   // Save user to backend (MongoDB)
   const saveUserToBackend = async (userData) => {
     try {
-      const token = await auth.currentUser.getIdToken(); // Firebase ID token
-
-      const response = await fetch("http://localhost:3000/users", {
+      await fetch("http://localhost:3000/users", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to save user to backend");
-      }
     } catch (err) {
       console.error("Backend save error:", err);
     }
@@ -60,23 +50,20 @@ const Register = () => {
 
     setLoading(true);
     try {
-      // 1️⃣ Create user in Firebase
-      const result = await createUser(email, password);
+      // 1️⃣ Create user in Firebase and update profile
+      const user = await createUser(email, password, name, photoURL);
 
-      // 2️⃣ Update Firebase profile
-      await updateUserProfile({ displayName: name, photoURL });
-
-      // 3️⃣ Save user info to backend (MongoDB)
+      // 2️⃣ Save user in MongoDB
       await saveUserToBackend({
         name,
         email,
         photoURL,
-        role: "importer", // default role
       });
 
-      toast.success("Registration successful!");
+      toast.success(`Registration successful! Welcome, ${user.displayName}`);
       navigate(from, { replace: true });
     } catch (err) {
+      console.error(err);
       toast.error(err.message);
     } finally {
       setLoading(false);
@@ -84,22 +71,24 @@ const Register = () => {
   };
 
   // Google registration/login
-  const handleGoogleRegister = async () => {
+  const handleGoogleRegister = async (e) => {
+    e.preventDefault();
     setLoading(true);
     try {
-      const result = await googleLogin();
+      const result = await signInWithGoogle();
       const user = result.user;
 
+      // Save user in MongoDB
       await saveUserToBackend({
         name: user.displayName || "",
         email: user.email,
         photoURL: user.photoURL || "",
-        role: "importer",
       });
 
-      toast.success("Login successful!");
+      toast.success(`Login successful! Welcome, ${user.displayName}`);
       navigate(from, { replace: true });
     } catch (err) {
+      console.error(err);
       toast.error(err.message);
     } finally {
       setLoading(false);
