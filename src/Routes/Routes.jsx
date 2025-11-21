@@ -1,4 +1,4 @@
-// Routes.jsx
+
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout.jsx";
 import ErrorPage from "../Component/ErrorPage.jsx";
@@ -12,7 +12,7 @@ import MyExports from "../Pages/MyExports.jsx";
 import MyImports from "../Pages/MyImports.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 
-const API_BASE = "http://localhost:3000"; // backend URL
+const API_BASE = "https://import-export-hub-server-naznin-gs-projects.vercel.app"; 
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/product/:id",
-        loader: ({params}) => fetch(`http://localhost:3000/product/${params.id}`),
+        loader: ({params}) => fetch(`${API_BASE}/product/${params.id}`),
         element: (
           <PrivateRoute>
             <ProductDetails />

@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser, signInWithGoogle } = useContext(AuthContext); // ✅ Correct
+  const { createUser, signInWithGoogle } = useContext(AuthContext); 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -17,7 +17,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Password validation
+  
   const isValidPassword = (pass) => {
     const hasUpper = /[A-Z]/.test(pass);
     const hasLower = /[a-z]/.test(pass);
@@ -25,10 +25,10 @@ const Register = () => {
     return hasUpper && hasLower && hasLength;
   };
 
-  // Save user to backend (MongoDB)
+  
   const saveUserToBackend = async (userData) => {
     try {
-      await fetch("http://localhost:3000/users", {
+      await fetch("${API_BASE}/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),

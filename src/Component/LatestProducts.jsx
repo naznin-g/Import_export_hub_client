@@ -7,9 +7,9 @@ const LatestProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-  axios.get("http://localhost:3000/latest-products")
+  axios.get("${API_BASE}/latest-products")
     .then(res => {
-      console.log(res.data); // <-- check what server sends
+      console.log(res.data); 
       setProducts(res.data)
     })
     .catch(err => console.error(err));

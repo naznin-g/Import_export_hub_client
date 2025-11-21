@@ -22,7 +22,7 @@ const Login = () => {
       const token = await auth.currentUser.getIdToken();
       localStorage.setItem("access-token", token);
 
-      await fetch("http://localhost:3000/users", {
+      await fetch("${API_BASE}/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

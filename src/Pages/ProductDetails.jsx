@@ -20,7 +20,7 @@ const ProductDetails = () => {
   const [currentStock, setCurrentStock] = useState(0);
   const [importers, setImporters] = useState([]);
 
-  // Fetch product & importer list
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,7 +41,7 @@ const ProductDetails = () => {
     fetchData();
   }, [id]);
 
-  // Handle import form submission
+  
   const handleImportSubmit = async (e) => {
     e.preventDefault();
     if (!user) return alert("Please login to import!");
@@ -59,12 +59,12 @@ const ProductDetails = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Update stock in frontend
+      
       setCurrentStock(res.data.remainingStock);
       setQuantity(1);
       setModalOpen(false);
 
-      // Update importers list
+      
       setImporters((prev) => [
         ...prev,
         {

@@ -15,7 +15,7 @@ const MyExports = () => {
   const [formPrice, setFormPrice] = useState("");
   const [formQuantity, setFormQuantity] = useState("");
 
-  // Fetch exports
+  
   const fetchExports = async () => {
     try {
       setLoading(true);
@@ -33,7 +33,7 @@ const MyExports = () => {
     fetchExports();
   }, []);
 
-  // Delete Product
+  
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
 
@@ -47,7 +47,7 @@ const MyExports = () => {
     }
   };
 
-  // Open modal with item data
+  
   const openUpdateModal = (item) => {
     setSelectedProduct(item);
     setFormPrice(item.price);
@@ -55,7 +55,7 @@ const MyExports = () => {
     setModalOpen(true);
   };
 
-  // Update product
+  
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
 
@@ -80,7 +80,7 @@ const MyExports = () => {
 
       toast.success("Product updated!");
 
-      // update local state
+      
       setExportsData((prev) =>
         prev.map((exp) =>
           exp._id === selectedProduct._id

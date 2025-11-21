@@ -5,7 +5,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./Routes/Routes.jsx";
 import AuthProvider from "./Context/AuthProvider.jsx";
 import Loader from "./Component/Loader.jsx";
-import { ThemeProvider } from "./Context/ThemeContext.jsx"; // import ThemeProvider
+import { ThemeProvider } from "./Context/ThemeContext.jsx"; 
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

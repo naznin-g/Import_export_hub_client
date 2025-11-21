@@ -20,7 +20,7 @@ const AllProducts = () => {
     fetchProducts();
   }, [axios]);
 
-  // Filter products by name
+  
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -29,7 +29,7 @@ const AllProducts = () => {
     <div className="max-w-6xl mx-auto mt-10 px-4">
       <h2 className="text-center text-2xl font-bold mb-4 text-[#1D7A8B]">All Our Products</h2>
 
-      {/* Top bar: count + search */}
+      
       <div className="flex justify-between items-center mb-6">
         <p className="font-semibold text-gray-700">
           {filteredProducts.length} products found
@@ -44,7 +44,7 @@ const AllProducts = () => {
         />
       </div>
 
-      {/* Product grid */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.length === 0 ? (
           <p className="text-center col-span-full">No products found.</p>

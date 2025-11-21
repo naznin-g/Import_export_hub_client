@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import logo from "../assets/export_import.png"; 
 import { FaUser } from "react-icons/fa"; 
 import { AuthContext } from "../Context/AuthContext";
-import { ThemeContext } from "../Context/ThemeContext"
+import { ThemeContext } from "../Context/ThemeContext";
 
 const links = [
   { name: "Home", path: "/" },
@@ -65,7 +65,7 @@ const Navbar = () => {
           {user ? (
             <>
               <img
-                src={user.photoURL || "https://placehold.co/30"}
+                src={user.photoURL || "https://via.placeholder.com/150"}
                 alt="User"
                 className="w-8 h-8 rounded-full"
               />

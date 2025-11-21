@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useAxiosSecure from "../hooks/useAxiosSecure"; // your secure axios hook
+import useAxiosSecure from "../hooks/useAxiosSecure"; 
 import { useNavigate } from "react-router-dom";
 
 const AddExport = () => {
@@ -18,7 +18,7 @@ const AddExport = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Handle input change
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProductData((prev) => ({
@@ -27,15 +27,15 @@ const AddExport = () => {
     }));
   };
 
-  // Handle form submission
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
     try {
-      // Post product to server
-      const res = await axiosSecure.post("/products", {
+      
+      const response = await axiosSecure.post("/products", {
         ...productData,
         price: parseFloat(productData.price),
         rating: parseFloat(productData.rating),
@@ -43,7 +43,7 @@ const AddExport = () => {
       });
 
       alert("Product added successfully!");
-      navigate("/myExports"); // Redirect to My Exports page
+      navigate("/myExports"); 
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Something went wrong");

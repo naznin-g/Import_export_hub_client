@@ -7,7 +7,7 @@ import Loader from "../Component/Loader";
 import Swal from "sweetalert2";
 import { FaStar, FaCoins } from "react-icons/fa";
 import { LiaGlobeSolid } from "react-icons/lia";
-import { BsBoxes } from "react-icons/bs";
+
 
 const MyImports = () => {
   //const { user } = useContext(AuthContext);
@@ -16,7 +16,7 @@ const MyImports = () => {
   const [importsData, setImportsData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch user's imported products
+  
   const fetchImports = async () => {
     try {
       setLoading(true);
@@ -34,7 +34,7 @@ const MyImports = () => {
     fetchImports();
   }, []);
 
-  // Remove an import
+  
  
 
 const handleRemove = async (id) => {
