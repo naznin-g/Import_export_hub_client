@@ -11,7 +11,7 @@ const useAxiosSecure = () => {
   
   const instance = axios.create({
    // baseURL: "http://localhost:3000",
-    baseURL: "https://import-export-hub-server-naznin-gs-projects.vercel.app",  
+    baseURL: "https://import-export-hub-server-six.vercel.app",  
   });
 
   useEffect(() => {

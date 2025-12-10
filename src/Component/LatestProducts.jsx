@@ -7,7 +7,7 @@ const LatestProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-  axios.get("${API_BASE}/latest-products")
+  axios.get('/latest-products')
     .then(res => {
       console.log(res.data); 
       setProducts(res.data)

@@ -12,7 +12,7 @@ import MyExports from "../Pages/MyExports.jsx";
 import MyImports from "../Pages/MyImports.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 
-const API_BASE = "https://import-export-hub-server-naznin-gs-projects.vercel.app"; 
+export const API_BASE = 'https://import-export-hub-server-six.vercel.app'; 
 
 export const router = createBrowserRouter([
   {

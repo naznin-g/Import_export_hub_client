@@ -22,7 +22,7 @@ const createUser = async (email, password, displayName) => {
         await updateProfile(user, { displayName });
 
         // 3️⃣ Save user in MongoDB
-        await fetch("http://localhost:3000/users", {
+        await fetch("https://import-export-hub-server-six.vercel.app", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
